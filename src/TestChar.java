@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class TestChar {
     public int[] testChar(char[] WordArray, char ch) {
         int j = 0;
@@ -5,9 +7,8 @@ public class TestChar {
 
         //Makes the index array have a value of -1 so when inputting the value of
         // the index where the character is.
-        for(int m = 0; m< index.length; m++) {
-            index[m] = -1;
-        }//End For
+        //End For
+        Arrays.fill(index, -1);
 
         for(int i = 0; i < WordArray.length; i++) {
             if (Character.isUpperCase(ch)) {

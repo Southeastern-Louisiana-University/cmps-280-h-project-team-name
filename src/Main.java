@@ -6,17 +6,16 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("\\ \n" + " \\ \n" + "  | \n" + "  |\n" + " ( )\n" + " \\|/\n" + "  |\n" + " / \\");
         //Variables
         String word = "";
         int testn = 0;
 
         //Class intialize
-        Word a = new Word();
-        arrToString a2 = new arrToString();
-        TestChar a3 = new TestChar();
+        Word w = new Word();
+        arrToString as = new arrToString();
+        TestChar tc = new TestChar();
         Stickman s = new Stickman();
-        ArrayEquals a4 = new ArrayEquals();
+        ArrayEquals ae = new ArrayEquals();
 
         //Creates Scanner
         Scanner input = new Scanner(System.in);
@@ -39,8 +38,8 @@ public class Main {
                 System.out.println("Improper file directory");
             }//End Try/Catch
 
-            //Creates arrays
-            char[] WordArray = a.wordArr(word);
+            //Create arrays
+            char[] WordArray = w.wordArr(word);
             char[] Blank = new char[WordArray.length];
             int[] index;
             char[] letters = new char[26];
@@ -58,33 +57,31 @@ public class Main {
             //The actual game portion
             System.out.println(s.stickman(stage));
 
-            boolean b = a4.arrayEquals(WordArray, Blank);
+            boolean b = ae.arrayEquals(WordArray, Blank);
 
             while ((stage < 6) && b) {
                 System.out.println(Blank);
                 System.out.println("Input a character: ");
                 char ch = input.next().charAt(0);
-                if (a3.charCorrection(a3.testChar(letters, ch))) {
+                if (tc.charCorrection(tc.testChar(letters, ch))) {
                     System.out.println("You have used this letter try again");
                 } else {
                     letters[l] = ch;
                     l++;
-                    index = a3.testChar(WordArray, ch);
-                    if (a3.charCorrection(index)) {
+                    index = tc.testChar(WordArray, ch);
+                    if (tc.charCorrection(index)) {
                         for (int i = 0; i < index.length; i++) {
                             if (index[i] >= 0) {
                                 int m = index[i];
                                 Blank[m] = WordArray[m];
-                                System.out.println(m);
                             }//End internal if
                         }//End for
-                        System.out.println(s.stickman(stage));
                     } else {
                         stage += 1;
-                        System.out.println(s.stickman(stage));
                     }//End else
+                    System.out.println(s.stickman(stage));
 
-                    b = a4.arrayEquals(WordArray, Blank);
+                    b = ae.arrayEquals(WordArray, Blank);
                 }
             }//End internal while
 
@@ -105,21 +102,13 @@ public class Main {
             String s1 = "Y";
 
             //Fixes an error where when looped the message.nextLine would not prompt user for an input
-            input.nextLine();
+            //input.nextLine();
 
             //checks if test is true or false when compared to s1
-            if ((test.equalsIgnoreCase(s1))) {
-            } else
-
-                //if false it sets i = -1 so the loop will stop
+            //if false it sets i = -1 so the loop will stop
+            if ((!test.equalsIgnoreCase(s1))) {
                 testn = -1;
-
+            }//End if
         }//End while
-
-
-
-//                String b = input.nextLine();
-
-
     }//End main
 }//End class
