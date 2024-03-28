@@ -28,7 +28,7 @@ public class Main {
         while(testn >= 0) {
             //Variables
             int stage = 0;
-            int randomN = (int)(Math.random() * 15) + 1;
+            int randomN = (int)(Math.random() * 15) + 1; //RandomWords has 83367 lines, for future refrence.
             int l = 0;
 
             //Finds a word from a text file
