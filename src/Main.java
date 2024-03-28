@@ -28,15 +28,27 @@ public class Main {
         while(testn >= 0) {
             //Variables
             int stage = 0;
-            int randomN = (int)(Math.random() * 15) + 1;
+            int randomN = 0; //RandomWords has 83367 lines, for future refrence.
             int l = 0;
 
             //Finds a word from a text file
-            try (Stream<String> lines = Files.lines(Paths.get("src/Test Words"))) {
-                word = lines.skip((randomN -1)).findFirst().get();
-            } catch (IOException e) {
-                System.out.println("Improper file directory");
-            }//End Try/Catch
+            System.out.println("Choose categories, For test words inout 1, for randomwords input 2");
+            int c = input.nextInt();
+            if (c == 1) {
+                randomN = (int)(Math.random() * 15) + 1;
+                try (Stream<String> lines = Files.lines(Paths.get("src/Test Words"))) {
+                    word = lines.skip((randomN - 1)).findFirst().get();
+                } catch (IOException e) {
+                    System.out.println("Improper file directory");
+                }//End Try/Catch
+            } else if (c == 2) {
+                randomN = (int)(Math.random() * 83367) + 1;
+                try (Stream<String> lines = Files.lines(Paths.get("src/RandomWord"))) {
+                    word = lines.skip((randomN - 1)).findFirst().get();
+                } catch (IOException e) {
+                    System.out.println("Improper file directory");
+                }//End Try/Catch
+            }
 
             //Create arrays
             char[] WordArray = w.wordArr(word);
