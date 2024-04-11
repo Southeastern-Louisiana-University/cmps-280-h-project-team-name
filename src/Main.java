@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class Main {
     public static void main(String[] args) {
         //Variables
-        String word = "";
+
         int testn = 0;
 
         //Class intialize
@@ -27,27 +27,35 @@ public class Main {
         System.out.println("the Stickman is fully drawn you lose. If you get the word you win!");
         while(testn >= 0) {
             //Variables
+            String word = "";
             int stage = 0;
             int randomN = 0; //RandomWords has 83367 lines, for future refrence.
             int l = 0;
+            String category = "";
+            int fail = 0;
 
             //Finds a word from a text file
             System.out.println("Choose categories, For test words inout 1, for randomwords input 2");
-            int c = input.nextInt();
-            if (c == 1) {
+            String c = input.nextLine();
+            if (c.equals("Test Word")) {
                 randomN = (int)(Math.random() * 15) + 1;
                 try (Stream<String> lines = Files.lines(Paths.get("src/Test Words"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
+                    category = "(Remember, the word is a Test Word)";
                 } catch (IOException e) {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
-            } else if (c == 2) {
+            } else if (c == "Random Word") {
                 randomN = (int)(Math.random() * 83367) + 1;
                 try (Stream<String> lines = Files.lines(Paths.get("src/RandomWord"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
+                    category = "(Remember, the word is random, sorry I can't help more)";
                 } catch (IOException e) {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
+            } else {
+                fail = 1;
+                System.out.println("You have inputted the wrong word");
             }
 
             //Create arrays
@@ -73,6 +81,7 @@ public class Main {
 
             while ((stage < 6) && b) {
                 System.out.println(Blank);
+                System.out.println(category);
                 System.out.println("Input a character: ");
                 char ch = input.next().charAt(0);
                 if (tc.charCorrection(tc.testChar(letters, ch))) {
@@ -97,11 +106,13 @@ public class Main {
                 }
             }//End internal while
 
-            if (stage >= 6) {
-                System.out.println("Sorry, you loss the word was " + word);
-            } else if (!b) {
-                System.out.println("Congrats, you won!");
-            }
+                if (fail == 1) {
+
+                } else if (stage >= 6) {
+                    System.out.println("Sorry, you loss the word was " + word);
+                } else if (!b) {
+                    System.out.println("Congrats, you won!");
+                }
 
             //Ask user to input value to see if they want to repeat
             System.out.print("\nDo you want to play again? Y/N: ");
@@ -114,7 +125,7 @@ public class Main {
             String s1 = "Y";
 
             //Fixes an error where when looped the message.nextLine would not prompt user for an input
-            //input.nextLine();
+            input.nextLine();
 
             //checks if test is true or false when compared to s1
             //if false it sets i = -1 so the loop will stop
