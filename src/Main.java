@@ -54,7 +54,7 @@ public class Main {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
             } else if (c.equals("Super Heroes")) {
-                randomN = (int) (Math.random() * 83367) + 1;
+                randomN = (int) (Math.random() * 36) + 1;
                 try (Stream<String> lines = Files.lines(Paths.get("src/Super Heroes"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
                     category = "(Remember, the word is a Super Hero)";
@@ -62,7 +62,7 @@ public class Main {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
             } else if (c.equals("Food")) {
-                randomN = (int) (Math.random() * 83367) + 1;
+                randomN = (int) (Math.random() * 107) + 1;
                 try (Stream<String> lines = Files.lines(Paths.get("src/Food"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
                     category = "(Remember, the word is a Food)";
