@@ -45,7 +45,7 @@ public class Main {
                 } catch (IOException e) {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
-            } else if (c == "Random Word") {
+            } else if (c.equals("Random Word")) {
                 randomN = (int)(Math.random() * 83367) + 1;
                 try (Stream<String> lines = Files.lines(Paths.get("src/RandomWord"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
