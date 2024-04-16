@@ -53,6 +53,22 @@ public class Main {
                 } catch (IOException e) {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
+            } else if (c.equals("Super Heroes")) {
+                randomN = (int) (Math.random() * 83367) + 1;
+                try (Stream<String> lines = Files.lines(Paths.get("src/Super Heroes"))) {
+                    word = lines.skip((randomN - 1)).findFirst().get();
+                    category = "(Remember, the word is a Super Hero)";
+                } catch (IOException e) {
+                    System.out.println("Improper file directory");
+                }//End Try/Catch
+            } else if (c.equals("Food")) {
+                randomN = (int) (Math.random() * 83367) + 1;
+                try (Stream<String> lines = Files.lines(Paths.get("src/Food"))) {
+                    word = lines.skip((randomN - 1)).findFirst().get();
+                    category = "(Remember, the word is a Food)";
+                } catch (IOException e) {
+                    System.out.println("Improper file directory");
+                }//End Try/Catch
             } else {
                 fail = 1;
                 System.out.println("You have inputted the wrong word");
