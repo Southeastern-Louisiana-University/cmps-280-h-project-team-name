@@ -35,7 +35,8 @@ public class Main {
             int fail = 0;
 
             //Finds a word from a text file
-            System.out.println("Choose categories, For test words inout 1, for randomwords input 2");
+            System.out.println("Type a category name. The categories are Test Word, Random Word, " +
+                    "Super Heroes, Food, and Animals");
             String c = input.nextLine();
             if (c.equals("Test Word")) {
                 randomN = (int)(Math.random() * 15) + 1;
@@ -46,7 +47,7 @@ public class Main {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
             } else if (c.equals("Random Word")) {
-                randomN = (int)(Math.random() * 83367) + 1;
+                randomN = (int)(Math.random() * 83368) + 1;
                 try (Stream<String> lines = Files.lines(Paths.get("src/RandomWord"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
                     category = "(Remember, the word is random, sorry I can't help more)";
@@ -66,6 +67,14 @@ public class Main {
                 try (Stream<String> lines = Files.lines(Paths.get("src/Food"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
                     category = "(Remember, the word is a Food)";
+                } catch (IOException e) {
+                    System.out.println("Improper file directory");
+                }//End Try/Catch
+            } else if (c.equals("Animals")) {
+                randomN = (int) (Math.random() * 105) + 1;
+                try (Stream<String> lines = Files.lines(Paths.get("src/Food"))) {
+                    word = lines.skip((randomN - 1)).findFirst().get();
+                    category = "(Remember, the word is an Animal)";
                 } catch (IOException e) {
                     System.out.println("Improper file directory");
                 }//End Try/Catch
