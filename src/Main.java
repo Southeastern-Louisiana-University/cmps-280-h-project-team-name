@@ -72,7 +72,7 @@ public class Main {
                 }//End Try/Catch
             } else if (c.equals("Animals")) {
                 randomN = (int) (Math.random() * 105) + 1;
-                try (Stream<String> lines = Files.lines(Paths.get("src/Food"))) {
+                try (Stream<String> lines = Files.lines(Paths.get("src/Animals"))) {
                     word = lines.skip((randomN - 1)).findFirst().get();
                     category = "(Remember, the word is an Animal)";
                 } catch (IOException e) {
